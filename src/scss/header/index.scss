@@ -1,0 +1,125 @@
+$backgroundHeader: #DBEAFE;
+
+
+.header {
+    background-color: $backgroundHeader;
+    // height: 8vh;
+    width: 100%;
+
+    &_container {
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 5%;
+
+        &_left {
+            img {
+                width: 150px
+            }
+        }
+
+        &_right {
+            cursor: pointer;
+
+            a {
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                font-size: 20px;
+            }
+        }
+
+        &_between {
+            &_items {
+                &_s {
+                    position: relative;
+                    cursor: pointer;
+                    display: flex;
+                    margin: 0 5px;
+                    align-items: center;
+
+                    icon {
+                        display: flex;
+                        align-items: center;
+                    }
+
+                    span {
+                        font-size: 20px;
+                        font-family: $font;
+                    }
+
+                    &_popup {
+                        cursor: auto !important;
+                        position: absolute;
+                        height: 300px;
+                        left: -250%;
+                        width: 700px !important;
+                        top: 190%;
+                        flex-direction: column;
+                        background-color: white;
+                        border-radius: 5px;
+                        overflow: hidden;
+                        box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.165);
+                        opacity: 0;
+                        transition: 0.5s;
+                        z-index: 100;
+visibility: hidden;
+                        &.active {
+                            opacity: 1;
+                            visibility: visible;
+                        }
+
+                        &_left {
+                            width: 30%;
+                            border-right: 1px solid rgba(0, 0, 0, 0.179);
+
+                            &_content {
+                                cursor: pointer;
+                                align-items: center;
+                            }
+
+                            icon {
+                                display: block;
+                                width: 30%;
+                            }
+
+                            span {
+                                width: 70%;
+                                padding: 20px 0;
+                                display: block;
+                            }
+                        }
+
+                        &_right {
+                            width: 70%;
+
+                            &_top {
+                                border-bottom: 1px solid rgba(0, 0, 0, 0.104);
+
+                                &_content {
+                                    border-right: 1px solid rgba(0, 0, 0, 0.104);
+                                    text-align: start;
+                                    padding: 15px 10px;
+                                    cursor: pointer;
+                                }
+                            }
+
+                            &_bottom {
+                                &_content {
+                                    text-align: start;
+                                    padding: 15px 0 0 15px;
+                                    cursor: pointer;
+
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+}
+
+.homePage {
+    position: relative;
+}

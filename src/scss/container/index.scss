@@ -1,0 +1,307 @@
+//container
+$font : 'Open Sans',
+sans-serif;
+$colorspan: #6B72A1;
+
+.container {
+    width: 100%;
+    // height: 71.4vh;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+
+    &_category {
+
+        width: 90%;
+
+        &_title {
+            justify-content: center;
+
+            h1 {
+                line-height: 1.25;
+                font-weight: 700;
+                font-size: 60px;
+                font-family: Open Sans, sans-serif;
+                text-align: center;
+            }
+        }
+
+        &_content {
+            justify-content: center;
+
+            span {
+                line-height: 2;
+                font-weight: 500;
+                font-size: 23px;
+                font-family: Open Sans, sans-serif;
+                text-align: center;
+            }
+        }
+
+        &_item {
+            margin-top: 50px !important;
+
+            &_s {
+
+                &_sheet {
+                    border-radius: 10px;
+                    overflow: hidden;
+                    width: 100%;
+
+                    &_top {}
+
+                    &_bottom {
+                        &_grid {
+                            padding-top: 10px;
+
+                            &_content {
+
+                                background-color: white;
+                                cursor: pointer;
+                                margin: 5px 5px 5px 10px !important;
+                                overflow: hidden;
+                                border-radius: 26px;
+                                box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.375);
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                z-index: 999;
+
+                                span {
+                                    z-index: 0;
+                                    width: 100%;
+                                    text-align: center;
+                                    padding: 12px 10px;
+                                    transition: 0.5s;
+                                    font-weight: 600;
+                                    font-size: 17px;
+                                    font-family: cursive,
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &_reason {
+        margin-top: 20px;
+
+        &_content {
+            &_top {
+                justify-content: center;
+
+                span {}
+            }
+
+            &_between {
+                margin: 20px 0 0 0;
+                justify-content: center;
+
+                span {
+                    color: #6B7AA6;
+                    font-family: 'Open Sans', sans-serif;
+                    font-size: 30px;
+                }
+            }
+
+            &_bottom {
+                flex-direction: column !important;
+                align-items: center;
+                margin-top: 100px;
+
+                &_items {
+                    display: flex !important;
+                    justify-content: space-evenly !important;
+
+                    &_s {
+                        width: 100%;
+                        box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.192);
+                        overflow: hidden;
+                        display: flex;
+                        flex-flow: column !important;
+                        align-items: center;
+                        border-radius: 10px;
+                        padding: 50px 0;
+
+                        &_content {
+                            width: 70%;
+                            display: flex;
+                            flex-flow: column;
+                            text-align: center;
+                            justify-content: space-evenly !important;
+
+                            img {
+                                align-self: center;
+                                width: 400px;
+                            }
+
+                            h1 {
+                                font-size: 25px;
+                                font-family: $font;
+                                font-weight: 500;
+                            }
+
+                            span {
+                                font-size: 17px;
+                                font-family: $font;
+                                font-weight: 500;
+                                color: $colorspan;
+                            }
+                        }
+
+                    }
+                }
+
+                &_button {
+                    margin-top: 50px !important;
+                    background-image: linear-gradient(to right, #e82e82ca, #82358bd2);
+                    color: white !important;
+                    font-size: 17px !important;
+                    font-family: $font !important;
+                    position: relative !important;
+                    z-index: 10;
+
+                    &::before {
+                        align-self: center;
+                        content: "Learn More";
+                        position: absolute;
+                        top: 0%;
+                        line-height: 41px;
+                        left: 0%;
+                        width: 100%;
+                        height: 100%;
+                        opacity: 0;
+                        transition: 0.5s;
+                        background-image: linear-gradient(to right, #e82e81, #82358b);
+                    }
+
+                    &:hover {
+                        &::before {
+                            border-radius: 10px;
+                            opacity: 1;
+                            z-index: 0;
+
+                        }
+
+                    }
+
+
+
+                }
+            }
+        }
+    }
+
+    &_course {
+        width: 90%;
+        margin-top: 100px;
+
+        &_content {
+            &_top {
+                justify-content: center;
+
+                span {}
+            }
+
+
+
+            &_bottom {
+                flex-direction: column !important;
+                align-items: center;
+                margin-top: 100px;
+
+                &_items {
+                    display: flex !important;
+                    justify-content: space-evenly !important;
+
+                    &_s {
+
+                        box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.192);
+                        overflow: hidden;
+                        display: flex;
+                        flex-flow: column !important;
+                        align-items: center;
+                        border-radius: 10px;
+                        padding: 50px 0;
+
+                        &_content {
+                            width: 90%;
+
+                            display: flex;
+                            flex-flow: column;
+                            text-align: center;
+                            align-items: center;
+                            justify-content: space-evenly !important;
+
+                            img {
+                                align-self: center;
+                                width: 100px;
+                            }
+
+                            h1 {
+                                font-size: 25px;
+                                font-family: $font;
+                                font-weight: 500;
+                            }
+
+                            span {
+                                font-size: 17px;
+                               padding-top: 30px;
+                                font-family: $font;
+                                font-weight: 500;
+                                color: $colorspan;
+                            }
+
+                            &_button {
+                                margin-top: 10px !important;
+                                background-image: linear-gradient(to right, #e82e82ca, #82358bd2);
+                                color: white !important;
+                                font-size: 17px !important;
+                                font-family: $font !important;
+                                position: relative !important;
+                                z-index: 10;
+                                border-radius: 15px !important;
+                                width: 80%;
+
+                                &::before {
+                                    align-self: center;
+                                    content: "CONTACT US";
+                                    position: absolute;
+                                    top: 0%;
+                                    line-height: 41px;
+                                    left: 0%;
+                                    width: 100%;
+                                    height: 100%;
+                                    opacity: 0;
+                                    border-radius: 15px ;
+                                    transition: 0.5s;
+                                    background-image: linear-gradient(to right, #e82e81, #82358b);
+                                }
+
+                                &:hover {
+                                    &::before {
+                                        border-radius: 15px ;
+                                        opacity: 1;
+                                        z-index: 0;
+
+                                    }
+
+                                }
+
+
+
+                            }
+                        }
+
+                    }
+                }
+
+
+            }
+        }
+    }
+}

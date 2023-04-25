@@ -1,0 +1,60 @@
+.Topics {
+    margin: 100px 50px 100px 50px;
+
+    &_top {
+        h1 {
+            font-family: $font;
+            font-size: 45px;
+        }
+    }
+
+    &_between {
+
+        &_box1 {
+            &_top {
+                padding-left: 5px;
+
+                span {
+                    font-family: $font;
+                    font-size: 18px;
+                    font-weight: 500;
+                }
+            }
+
+            &_bottom {
+                span {}
+
+                &_content {
+                    font-family: $font;
+                    padding: 10px 7px;
+                    border-radius: 20px;
+                    width: 80px;
+                    font-size: 17px;
+                    font-weight: 600;
+                    cursor: pointer;
+                    text-align: center;
+                    border: 1px solid #155E75;
+
+                    &:hover {
+                        background-color: #155f75;
+                        color: white;
+                    }
+                }
+            }
+        }
+
+        &_box2 {
+            &_top {
+                span{
+                    font-family: $font;
+                    font-size: 18px;
+                    font-weight: 500;
+                }
+            }
+
+            &_bottom {}
+        }
+    }
+
+    &_bottom {}
+}
