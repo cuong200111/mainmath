@@ -1,0 +1,94 @@
+.exerciseContainer {
+
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+    padding: 10px;
+    position: relative;
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.258);
+    border-radius: 15px;
+    margin: 5% 0;
+    &_left {
+
+        &_top {}
+
+        &_bottom {
+
+            margin: 5% 0 0 5%;
+
+            img {
+                border-radius: 5px;
+                width: 800px;
+                z-index: 0;
+            }
+        }
+    }
+
+    &_right {
+        margin: 115px 0 0 0;
+        z-index: 0;
+
+        &_top {
+            margin: 5px 0;
+
+            h1 {
+                cursor: pointer;
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            }
+        }
+
+        &_bottom {
+            margin: 5px 0;
+
+            h1 {
+                cursor: pointer;
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            }
+        }
+
+    }
+
+    &_popup {
+        z-index: 10;
+        position: absolute;
+        
+        height: 100%;
+        top: 0;
+        left: 0%;
+        opacity: 0;
+        transition: 0.2s;
+        visibility: hidden;
+
+        img {
+         
+            border-radius: 15px;
+            height: 100%;
+            cursor: pointer;
+
+        }
+
+        &.active {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}
+
+.bg_exercise {
+    opacity: 0;
+    transition: 0.2s;
+    visibility: hidden;
+
+    &.active {
+        opacity: 1;
+
+        visibility: visible;
+    }
+}
+
+.exerciseContainer_main {
+    margin: 10px 10px;
+    margin-top: 50px;
+    margin-bottom: 100px;
+}

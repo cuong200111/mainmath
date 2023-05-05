@@ -1,0 +1,15 @@
+@import './mixin.scss';
+@import './base.scss';
+@import './varible.scss';
+@import './header/index.scss';
+@import './topics/index.scss';
+@import './main/main.scss';
+@import './footer/index.scss';
+@import './container/index.scss';
+@import './admin/index.scss';
+@import './exercise/index.scss';
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
