@@ -18,7 +18,7 @@ const Layout = () => {
                 {showPage ? <>
                     <Header />
                     <BreadCrumb /> </> : <></>}
-                <Router />
+                <Router/>
                 {showPage ? <Footer /> : <></>}
             </BrowserRouter>
         </Mycontext.Provider>

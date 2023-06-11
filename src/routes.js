@@ -6,7 +6,7 @@ import Topic from "./page/Topic"
 import Exercise from "./page/Exercise"
 import AddTopic from "./page/dasboard/addTopic"
 import AddContentTopic from "./page/dasboard/addContentTopic"
-
+import DeleteContentTopic from "./page/dasboard/deleteContentTopic"
 
 const router = [
     {
@@ -25,11 +25,15 @@ const router = [
     },
     {
         path: "/exercise",
-        main: () => <Exercise />
+        main: () => <Exercise pathName="exercise" />
     },
     {
         path: "/addcontenttopic",
         main: () => <AddContentTopic />
+    },
+    {
+        path: "/deletecontenttopic",
+        main: () => <DeleteContentTopic />
     },
     {
         path: "/addtopic",

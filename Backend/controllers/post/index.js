@@ -11,15 +11,25 @@ const API_IMG = process.env.API_IMG
 const storage = multer.diskStorage({
 
   destination: (req, file, cb) => {
-
     const ib = req.ib
     const dirName = req.topic
-  
-    const nameTopic = req.nametopic
 
-    const dataPath = file.fieldname === 'formula' ? path.join(`./data/Contains/${ib}/${dirName}/${nameTopic}/img/formula`) :
-      file.fieldname === 'mark' ? path.join(`./data/Contains/${ib}/${dirName}/${nameTopic}/img/mark`) :
-        file.fieldname === 'question' ? path.join(`./data/Contains/${ib}/${dirName}/${nameTopic}/img/question`) :
+    const nameTopic = req.nametopic
+    if (!fs.existsSync(path.join(`./data/Contains/${ib}/${dirName}/${nameTopic}/img/formula${req.queryId}`))) {
+      fs.mkdirSync(path.join(`./data/Contains/${ib}/${dirName}/${nameTopic}/img/formula${req.queryId}`))
+    }
+    if (!fs.existsSync(path.join(`./data/Contains/${ib}/${dirName}/${nameTopic}/img/mark${req.queryId}`))) {
+      !fs.mkdirSync(path.join(`./data/Contains/${ib}/${dirName}/${nameTopic}/img/mark${req.queryId}`))
+    }
+
+    // if (!fs.existsSync(path.join(`./data/Contains/${ib}/${dirName}/${nameTopic}/img/question${req.queryId}`))) {
+    //   fs.mkdirSync(path.join(`./data/Contains/${ib}/${dirName}/${nameTopic}/img/question${req.queryId}`))
+    // }
+
+
+    const dataPath = file.fieldname === 'formula' ? path.join(`./data/Contains/${ib}/${dirName}/${nameTopic}/img/formula${req.queryId}`) :
+      file.fieldname === 'mark' ? path.join(`./data/Contains/${ib}/${dirName}/${nameTopic}/img/mark${req.queryId}`) :
+        file.fieldname === 'question' ? path.join(`./data/Contains/${ib}/${dirName}/${nameTopic}/img`) :
           ''
     if (file.fieldname === 'formula') {
 
@@ -36,11 +46,12 @@ const storage = multer.diskStorage({
 
   filename: (req, file, cb) => {
 
+    const ext = path.extname(file.originalname)
 
     if (file.fieldname === 'formula') {
       cb(null, file.originalname)
     } else if (file.fieldname === 'question') {
-      cb(null, file.originalname)
+      cb(null, 'question' + req.queryId + ext)
     } else if (file.fieldname === 'mark') {
       cb(null, file.originalname)
     } else {
@@ -50,8 +61,8 @@ const storage = multer.diskStorage({
 })
 
 const uploadMiddleware = multer({ storage: storage }).fields([
-  { name: "formula", maxCount: 1 },
-  { name: "mark", maxCount: 1 },
+  { name: "formula", maxCount: undefined },
+  { name: "mark", maxCount: undefined },
   { name: "question", maxCount: 1 }
 
 ]);
@@ -62,26 +73,33 @@ router.route('/addcontenttopic/:ib/:topic/:nametopic').post((req, res, next) => 
   req.topic = req.params.topic
   req.nametopic = req.params.nametopic
   req.queryId = req.query.id
-  
+
   uploadMiddleware(req, res, (err) => {
 
     const { question, formula, mark } = req.files
-console.log(req.body);
+    console.log(mark)
     const readFile = fs.readFileSync(path.join(`./data/Contains/${req.ib}/${req.topic}/${req.nametopic}/data.json`))
     const data = JSON.parse(readFile)
+    const questionURl = API_IMG + '/' + req.ib + '/' + req.topic + '/' + req.nametopic + '/' + 'img' + '/' + 'question' + req.queryId + '.png'
+    const formulaURl = API_IMG + '/' + req.ib + '/' + req.topic + '/' + req.nametopic + '/' + 'img' + '/' + 'formula' + req.queryId
+    const markURl = API_IMG + '/' + req.ib + '/' + req.topic + '/' + req.nametopic + '/' + 'img' + '/' + 'mark' + req.queryId
+    let wr
+    data.forEach(item => {
+      if (questionURl !== item.question) {
 
-    const questionURl = API_IMG + '/' + req.ib+'/'+req.topic+'/'+req.nametopic + '/' + 'img' + '/' + question[0].fieldname + '/' + question[0].originalname
-    const formulaURl = API_IMG + '/' + req.ib+'/'+req.topic+'/'+req.nametopic + '/' + 'img' + '/' + formula[0].fieldname + '/' + formula[0].originalname
-    const markURl = API_IMG + '/' + req.ib+'/'+req.topic+'/'+req.nametopic + '/' + 'img' + '/' + mark[0].fieldname + '/' + mark[0].originalname
+      }
+
+    })
     const newData = [...data, { id: req.queryId, question: questionURl, mark: markURl, formula: formulaURl, type: req.body.type }]
-
+ 
     const wrFile = path.join(`./data/Contains/${req.ib}/${req.topic}/${req.nametopic}/data.json`)
-    const wr = fs.writeFileSync(wrFile, JSON.stringify(newData), 'utf8')
+    wr = fs.writeFileSync(wrFile, JSON.stringify(newData), 'utf8')
     if (wr) {
-      res.send('success');
+      return res.send('success');
     } else {
-      res.send('failure')
+      return res.send('failure')
     }
+
 
   });
 
@@ -106,9 +124,9 @@ router.route('/addTopic').post((req, res, next) => {
     fs.writeFileSync(linkExercise, JSON.stringify(jsonExercise), 'utf8')
     fs.mkdirSync(`${dataPath}/Contains/${IB}/${Topic}/${title}`)
     fs.mkdirSync(`${dataPath}/Contains/${IB}/${Topic}/${title}/img`)
-    fs.mkdirSync(`${dataPath}/Contains/${IB}/${Topic}/${title}/img/question`)
-    fs.mkdirSync(`${dataPath}/Contains/${IB}/${Topic}/${title}/img/mark`)
-    fs.mkdirSync(`${dataPath}/Contains/${IB}/${Topic}/${title}/img/formula`)
+    // fs.mkdirSync(`${dataPath}/Contains/${IB}/${Topic}/${title}/img/question`)
+    // fs.mkdirSync(`${dataPath}/Contains/${IB}/${Topic}/${title}/img/mark`)
+    // fs.mkdirSync(`${dataPath}/Contains/${IB}/${Topic}/${title}/img/formula`)
     fs.writeFileSync(`${dataPath}/Contains/${IB}/${Topic}/${title}/data.json`, '[]')
     res.send('sucsees')
   }

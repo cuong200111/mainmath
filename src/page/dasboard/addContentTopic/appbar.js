@@ -12,10 +12,11 @@ export default function ButtonAppBar(props) {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
-        <Toolbar>
+        <Toolbar         style={{display:"flex",justifyContent:"flex-end"}}>
           <Close
+          className={props.className}
             size="large"
-            style={{cursor:"pointer"}}
+            style={{cursor:"pointer",float:"right"}}
             sx={{ mr: 2 }}
             onClick={()=>{
                 props.onClose()

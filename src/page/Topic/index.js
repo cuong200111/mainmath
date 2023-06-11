@@ -56,13 +56,16 @@ const TopicParam = (props) => {
   ]
   const topics = [
     { name: "Topic" },
-    { name: "Exam" },
+    { name: "Exam" }
+
   ]
+  const indexTopic = titleParam === 'Exam' ? 1 : titleParam === 'Topic' ? 0 : 2
   // /Topic/${itemb.title.content}?title=${topic}` : '#'}`
+
   return (
     <div className='Topics'>
       <Grid container className='Topics_top'>
-        <h1>Topics</h1>
+        <h1 style={{fontSize:"28px"}}>Topics</h1>
       </Grid>
       <Grid container className='Topics_between'>
         {/* <Box className='Topics_between_box1'>
@@ -75,11 +78,11 @@ const TopicParam = (props) => {
       </Box> */}
         <Box className='Topics_between_box2'>
           <Grid className='Topics_between_box2_top'>
-            <span>Choose one</span>
+            <span >Choose one</span>
           </Grid>
           <Grid className='Topics_between_box2_bottom'>
             <Grid className='Topics_between_box1_bottom' container style={{ padding: "30px 0px" }}>
-              {topics.map((item, index) => (<Link to={`/Topic/${IB}?title=${titleParam}&id`} className='Topics_between_box1_bottom_content' style={{ margin: "0px 20px 0 0px" }} key={index}>{item.name}</Link>))}
+              {topics.map((item, index) => (<Link to={`/Topic/${IB}?title=${item.name}`} className='Topics_between_box1_bottom_content' style={{ margin: "0px 20px 0 0px", backgroundColor:  indexTopic === index ? '#155f75' :  '', color: indexTopic === index ? 'white':'black' }} key={index}>{item.name}</Link>))}
             </Grid>
           </Grid>
         </Box>
@@ -88,7 +91,7 @@ const TopicParam = (props) => {
         <Box className='Topics_bottom_Box'>
           <Grid className='Topics_bottom_Box_Content' container  >
             {expr ? expr.map((item, index) => (
-              <Grid key={index} item xs={2}  onClick={() => {
+              <Grid key={index} item xs={2} onClick={() => {
                 navigate(`/exercise?IB=${IB}&title=${titleParam}&id=${item.title}`)
               }} className='Topics_bottom_Box_Content_items'>
                 <h1>

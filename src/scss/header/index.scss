@@ -51,6 +51,7 @@ $backgroundHeader: #DBEAFE;
                         cursor: auto !important;
                         position: absolute;
                         height: 300px;
+                     
                         left: -250%;
                         width: 700px !important;
                         top: 190%;
@@ -62,7 +63,8 @@ $backgroundHeader: #DBEAFE;
                         opacity: 0;
                         transition: 0.5s;
                         z-index: 100;
-visibility: hidden;
+                        visibility: hidden;
+
                         &.active {
                             opacity: 1;
                             visibility: visible;

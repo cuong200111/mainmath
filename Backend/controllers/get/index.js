@@ -29,19 +29,41 @@ router.route('/getDirTopics/:ib/:topic').get((req, res, next) => {
 router.route('/getIndex/:ib/:topic/:name').get((req, res, next) => {
     const readFile = fs.readFileSync(path.join(`./data/Contains/${req.params.ib}/${req.params.topic}/${req.params.name}/data.json`))
 
-    const index = JSON.parse(readFile).length
+    const index = JSON.parse(readFile).length-1
     res.send(String(index))
 })
 router.route('/getExercise/:ib/:topic/:name').get((req, res, next) => {
- 
-    if (fs.existsSync(path.join(`./data/Contains/${req.params.ib}/${req.params.topic}/${req.params.name}/data.json`))){
+
+    if (fs.existsSync(path.join(`./data/Contains/${req.params.ib}/${req.params.topic}/${req.params.name}/data.json`))) {
         const data = fs.readFileSync(path.join(`./data/Contains/${req.params.ib}/${req.params.topic}/${req.params.name}/data.json`))
 
         res.send(JSON.parse(data))
-    }else{
+    } else {
         res.send('fail')
     }
-  
+
 })
 
+
+
+router.route('/getDeleteExercise/:ib/:topic/:name').get((req, res, next) => {
+
+    if (fs.existsSync(path.join(`./data/Contains/${req.params.ib}/${req.params.topic}/${req.params.name}/data.json`))) {
+        const data = fs.readFileSync(path.join(`./data/Contains/${req.params.ib}/${req.params.topic}/${req.params.name}/data.json`))
+
+        res.send(JSON.parse(data))
+    } else {
+        res.send('fail')
+    }
+
+})
+
+
+router.get('/getArrExercises/:id/:paths', (req, res) => {
+    const { paths } = req.params
+    const pathPng = path.join(`./data/Contains/${paths.slice(paths.lastIndexOf('imgdata') + 8)}`)
+    const data = fs.readdirSync(pathPng)
+    const mapData = data.map(item => item = paths + '/' + item)
+    res.send(mapData)
+})
 module.exports = router

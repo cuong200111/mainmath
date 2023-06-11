@@ -13,7 +13,7 @@ const Router = () => {
                             path={router.path}
                             exact={router.exact}
                             Component={router.main}
-
+                            pathRoutes={'1'}
                         />
                     ))
 

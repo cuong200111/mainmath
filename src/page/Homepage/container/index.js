@@ -189,7 +189,7 @@ const Container = () => {
                     className="container_category_item_s_sheet_bottom_grid"
                   >
                     {item.container.map((itemz, indexz) => (
-                      <Grid
+                      <Grid key={indexz}
                         className={`container_category_item_s_sheet_bottom_grid_content ${classes.hoverMath}`}
                         item
                         xs={item.container.length === 2 ? 12 : 5}
@@ -240,7 +240,7 @@ const Container = () => {
                 <Grid xs={3} key={index} className="container_reason_content_bottom_items_s">
                   <div className="container_reason_content_bottom_items_s_content">
 
-                    <img src={`${item.img}`} />
+                    <img src={`${item.img}`} alt=""/>
                     <h1>{item.title}</h1>
                     <span>{item.content}</span>
                   </div>
@@ -267,7 +267,7 @@ const Container = () => {
               {course.map((item, index) => (
                 <Grid xs={2.5} key={index} className="container_course_content_bottom_items_s">
                  <div className="container_course_content_bottom_items_s_content">
-                 <img src={item.img} />
+                 <img src={item.img} alt="" />
                  <h1>{item.title}</h1>
                  <span>{item.timeLearn} </span>
                  <Button className="container_course_content_bottom_items_s_content_button"> {item.contact}</Button>

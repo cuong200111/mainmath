@@ -1,4 +1,4 @@
-import { Box, Grid } from "@mui/material";
+import {Grid } from "@mui/material";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Mycontext } from "../../page/Layout";
@@ -9,24 +9,24 @@ const Header = (props) => {
   const [textDec, setTextDec] = useState(0)
   const [idPopup, setIdPopup] = useState([])
   //call Api
-  const [popupContent,setPopupContent] =useState([])
-    //call Api
-  const [popup,setPopup] =useState([])
+  const [popupContent, setPopupContent] = useState([])
+  //call Api
+  const [popup, setPopup] = useState([])
   //call Api
 
   useEffect(() => {
-      async function handleDataPopup(){
-        const dataPopup = await axios.get(`${apiKeys}/getPopup`)
-        setPopup(dataPopup.data.popup)
-        setPopupContent(dataPopup.data.popupContent)
- 
-      }
+    async function handleDataPopup() {
+      const dataPopup = await axios.get(`${apiKeys}/getPopup`)
+      setPopup(dataPopup.data.popup)
+      setPopupContent(dataPopup.data.popupContent)
 
-      handleDataPopup()
-      return ()=>{
-        return 0
-      }
-  },[])
+    }
+
+    handleDataPopup()
+    return () => {
+      return 0
+    }
+  }, [])
   const value = useContext(Mycontext)
   const location = useLocation()
   const titles = [
@@ -63,7 +63,7 @@ const Header = (props) => {
                   activePopup.current.classList.add('active')
                 }
               }}>
-                <span> {items.title} </span><icon>{items.icon ? <img style={{ width: "20px" }} src={items.icon} alt="#" /> : ''}</icon>
+                <span> {items.title} </span><>{items.icon ? <img style={{ width: "20px" }} src={items.icon} alt="#" /> : ''}</>
                 {indexs === 0 ?
                   <Grid ref={activePopup} container className="header_container_between_items_s_popup">
 
@@ -74,14 +74,14 @@ const Header = (props) => {
                           const newArrPopup = popupContent && popupContent.filter(itemz => itemz.id === iteml.item)
                           setIdPopup(newArrPopup)
                         }} className="header_container_between_items_s_popup_left_content" container key={indexl}>
-                          <span >  {iteml.item}  </span><icon><img width={20} src={iteml.img} alt="#" /></icon>
+                          <span >  {iteml.item}  </span><><img width={20} src={iteml.img} alt="#" /></>
                         </Grid>))}
                     </Grid>
 
                     <Grid className="header_container_between_items_s_popup_right">
                       <Grid container className="header_container_between_items_s_popup_right_top">
                         {idPopup.map((itemr, indexr) => (
-                          <Grid xs={6} className="header_container_between_items_s_popup_right_top_content" key={indexr}>
+                          <Grid item xs={6} className="header_container_between_items_s_popup_right_top_content" key={indexr}>
                             {itemr.title.content}
                           </Grid>
                         ))}
@@ -93,7 +93,7 @@ const Header = (props) => {
 
                           return (
 
-                            <Grid xs={6} className="header_container_between_items_s_popup_right_bottom_content" key={indexb}>
+                            <Grid item xs={6} className="header_container_between_items_s_popup_right_bottom_content" key={indexb}>
                               {itemb.title.topic.map((topic, indexz) => (
                                 <Grid style={{ margin: "10px" }}>
                                   <Link onClick={() => {
