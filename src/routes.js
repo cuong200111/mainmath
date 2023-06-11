@@ -3,7 +3,14 @@ import Login from "./page/Login"
 import NotFoundPage from "./page/NotFoundPage"
 import Content from "./page/Homepage/container"
 import Topic from "./page/Topic"
+<<<<<<< HEAD
 
+=======
+import Exercise from "./page/Exercise"
+import AddTopic from "./page/dasboard/addTopic"
+import AddContentTopic from "./page/dasboard/addContentTopic"
+import DeleteContentTopic from "./page/dasboard/deleteContentTopic"
+>>>>>>> mainmathnew
 
 const router = [
     {
@@ -21,6 +28,25 @@ const router = [
         main: () => <Topic.TopicParam />
     },
     {
+<<<<<<< HEAD
+=======
+        path: "/exercise",
+        main: () => <Exercise pathName="exercise" />
+    },
+    {
+        path: "/addcontenttopic",
+        main: () => <AddContentTopic />
+    },
+    {
+        path: "/deletecontenttopic",
+        main: () => <DeleteContentTopic />
+    },
+    {
+        path: "/addtopic",
+        main: () => <AddTopic />
+    },
+    {
+>>>>>>> mainmathnew
         path: "/Topic",
         main: () => <Topic.Topic />
     }, {

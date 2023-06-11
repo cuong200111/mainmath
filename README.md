@@ -1,5 +1,9 @@
 # Getting Started with Create React App
+<<<<<<< HEAD
 
+=======
+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
+>>>>>>> mainmathnew
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

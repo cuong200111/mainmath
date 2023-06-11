@@ -18,7 +18,11 @@ const Layout = () => {
                 {showPage ? <>
                     <Header />
                     <BreadCrumb /> </> : <></>}
+<<<<<<< HEAD
                 <Router />
+=======
+                <Router/>
+>>>>>>> mainmathnew
                 {showPage ? <Footer /> : <></>}
             </BrowserRouter>
         </Mycontext.Provider>

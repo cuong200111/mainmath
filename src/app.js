@@ -4,7 +4,7 @@ import router from "./routes";
 import Layout from "./page/Layout";
 const App = () => {
   return (
- <Layout/>
+ <Layout />
   );
 };
 

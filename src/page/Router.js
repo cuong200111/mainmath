@@ -13,7 +13,11 @@ const Router = () => {
                             path={router.path}
                             exact={router.exact}
                             Component={router.main}
+<<<<<<< HEAD
 
+=======
+                            pathRoutes={'1'}
+>>>>>>> mainmathnew
                         />
                     ))
 

@@ -1,0 +1,110 @@
+.exerciseContainer {
+
+    display: flex;
+    width: 100%;
+    height: 700px;
+    justify-content: space-between;
+    padding: 10px;
+    position: relative;
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.258);
+    border-radius: 15px;
+    margin: 5% 0;
+
+    &_left {
+        height: 100%;
+
+        &_top {}
+
+        &_bottom {
+            height: 100%;
+            margin: 5% 0 0 5%;
+
+            img {
+
+                border-radius: 5px;
+                cursor: zoom-in;
+                height: 90%;
+                z-index: 0;
+            }
+        }
+    }
+
+    &_right {
+        margin: 115px 0 0 0;
+        z-index: 0;
+
+        &_top {
+            margin: 5px 0;
+
+            h1 {
+                cursor: pointer;
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            }
+        }
+
+        &_bottom {
+            margin: 5px 0;
+
+            h1 {
+                cursor: pointer;
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            }
+        }
+
+    }
+
+    &_popup {
+        z-index: 10;
+        position: absolute;
+        height: 100%;
+        overflow-y: scroll;
+        top: 0;
+        left: 0%;
+        opacity: 0;
+        transition: 0.2s;
+        visibility: hidden;
+
+        img {
+            cursor: zoom-in;
+            border-radius: 15px;
+            height: 100%;
+            width: 100%;
+
+        }
+
+        &.active {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}
+
+.bg_exercise {
+    opacity: 0;
+    transition: 0.2s;
+    visibility: hidden;
+
+    &.active {
+        opacity: 1;
+
+        visibility: visible;
+    }
+}
+
+.exerciseContainer_main {
+    margin: 10px 10px;
+    margin-top: 50px;
+    margin-bottom: 100px;
+}
+
+.imgDraw {
+    -webkit-user-drag: none;
+    transition: 0.5s;
+    width: 70vw;
+    margin-top: 63.99px;
+    cursor: default;
+    box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.212);
+    text-align: center;
+    
+}
+.exerciseContainer_popup{}

@@ -1,0 +1,38 @@
+.addTopic {
+
+    &_content {
+        div {
+            margin: 5px 0;
+        }
+    }
+}
+
+.TableDelete {
+    border-collapse: unset !important;
+    &_Head {
+       
+        &_Row {
+          
+            &_Cell {
+                border: 1px solid;
+                text-align: center !important;
+            }
+        }
+    }
+
+    &_Body {
+       
+        &_Row {
+   
+            &_Cell {
+                text-align: center !important;
+                border: 1px solid;
+                button{
+                    font-size: 15px;
+                    cursor: pointer;
+                    padding: 5px 10px;
+                }
+            }
+        }
+    }
+}

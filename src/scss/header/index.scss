@@ -51,6 +51,10 @@ $backgroundHeader: #DBEAFE;
                         cursor: auto !important;
                         position: absolute;
                         height: 300px;
+<<<<<<< HEAD
+=======
+                     
+>>>>>>> mainmathnew
                         left: -250%;
                         width: 700px !important;
                         top: 190%;
@@ -62,7 +66,12 @@ $backgroundHeader: #DBEAFE;
                         opacity: 0;
                         transition: 0.5s;
                         z-index: 100;
+<<<<<<< HEAD
 visibility: hidden;
+=======
+                        visibility: hidden;
+
+>>>>>>> mainmathnew
                         &.active {
                             opacity: 1;
                             visibility: visible;

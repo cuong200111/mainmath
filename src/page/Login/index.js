@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { Mycontext } from '../Layout';
 
 const Login = (props) => {
+<<<<<<< HEAD
 
   const value = useContext(Mycontext)
 
@@ -11,11 +12,17 @@ const Login = (props) => {
 
   const location = useLocation()
 
+=======
+  const location = useLocation();
+  //Khog xoas vung nay
+  const value = useContext(Mycontext)
+>>>>>>> mainmathnew
   useEffect(() => {
     value.setShow(false)
     return () => {
       return value.setShow(true)
     };
+<<<<<<< HEAD
 
   }, [location])
   const handleDeleteClick = () => {
@@ -47,6 +54,14 @@ const Login = (props) => {
         </label>
       ))}
       <button onClick={handleDeleteClick}>Delete</button>
+=======
+  }, [location])
+    //Khog xoas vung nay
+
+  return (
+    <div>
+      login
+>>>>>>> mainmathnew
     </div>
   );
 
