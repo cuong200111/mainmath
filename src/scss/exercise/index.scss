@@ -13,7 +13,14 @@
     &_left {
         height: 100%;
 
-        &_top {}
+        &_top {
+            margin-left: 2%;
+            cursor: pointer;
+            font-family: sans-serif;
+            transition: 0.2s;
+            font-size: 18px;
+            font-weight: 600
+        }
 
         &_bottom {
             height: 100%;
@@ -30,24 +37,55 @@
     }
 
     &_right {
-        margin: 115px 0 0 0;
+        margin: 115px 100px 0 0;
         z-index: 0;
 
-        &_top {
-            margin: 5px 0;
+        &_level {}
 
-            h1 {
+        &_top {
+            display: flex;
+            align-items: center;
+            margin: 10px 0 0 0;
+
+            img {
+                margin: 0 5px 0 0;
                 cursor: pointer;
-                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            }
+
+            h5 {
+                cursor: pointer;
+                font-family: sans-serif;
+                transition: 0.2s;
+                color: #4B5563;
+                font-size: 14px;
+                font-weight: 600;
+                margin: 0;
+                &:hover {
+                    color: rgb(0, 0, 0);
+                }
             }
         }
 
         &_bottom {
-            margin: 5px 0;
+            display: flex;
+            align-items: center;
+            margin: 20px 0 0 0;
 
-            h1 {
+            img {
+                margin: 0 5px 0 0;
                 cursor: pointer;
-                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            }
+
+            h5 {
+                cursor: pointer;
+                font-family: sans-serif;
+                transition: 0.2s;
+                color: #4B5563;
+                font-size: 14px;
+                margin: 0 0 0 0;
+                &:hover {
+                    color: rgb(0, 0, 0);
+                }
             }
         }
 
@@ -105,6 +143,7 @@
     cursor: default;
     box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.212);
     text-align: center;
-    
+
 }
-.exerciseContainer_popup{}
+
+.exerciseContainer_popup {}

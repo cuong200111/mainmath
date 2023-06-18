@@ -6,6 +6,7 @@ import ButtonAppBar from '../dasboard/addContentTopic/appbar'
 import jsPdf from 'jspdf'
 import { PictureAsPdf } from '@mui/icons-material'
 import CloseIcon from '@mui/icons-material/Close';
+import LevelComponent from '../../components/level/Level'
 const Exercise = (props) => {
   const doc = new jsPdf()
   const { pathName } = props
@@ -29,11 +30,16 @@ const Exercise = (props) => {
         const fillExer = await axios.get(`${apiKeys}/getExercise`)
         const exerciseMap = await axios.get(`${apiKeys}/getExercise/${IB}/${title}/${id}`)
         setExprs(exerciseMap.data)
-        setFillExprs(fillExer.data.exercise[IB][title].filter(item => item.title === id))
+        const filterData = fillExer.data.exercise[IB][title].filter(item => {
+          const formatStr = item.title.trim()
+          if (formatStr === id) {
+            return item
+          }
+        })
+        setFillExprs(filterData)
       } catch (error) {
         setExprs([])
       }
-
     }
 
     filExercise()
@@ -160,6 +166,7 @@ const Exercise = (props) => {
       URL.revokeObjectURL(pdfUrlDownload)
     }
   }
+
   return (
     <div style={{ height: "auto" }}>
       <div ref={bg_exercise} style={{ position: 'fixed', width: "100%", height: "100%", background: "#0000001f", top: "0", left: "0", zIndex: "1" }} className={`bg_exercise ${activ !== -1 ? 'active' : ''}`}></div>
@@ -168,18 +175,19 @@ const Exercise = (props) => {
           {id}
           <Fab onClick={handlPdfAll} style={{ marginLeft: "12px", height: "36px", width: "36px", zIndex: -1 }}><PictureAsPdf style={{ height: "20px", width: "20px" }} /></Fab>
         </h1>
-          <div style={{ wordBreak: "break-word", padding: "0px 12px" }}>{id ? fillExprs && fillExprs[0].content : 'data rong'}</div>
+          <div style={{ wordBreak: "break-word", padding: "0px 12px" }}>{id ? Array.isArray(fillExprs) && fillExprs.length > 0 ? fillExprs[0].content : 'Không có data trên server' : 'data rong'}</div>
         </Grid>
 
 
         <Grid className='exerciseContainer_main'>
           {Array.isArray(exprs) && exprs.map((item, index) => (
+
             <Grid key={index} className='exerciseContainer'>
 
 
               <Grid className='exerciseContainer_left'>
                 <Grid className='exerciseContainer_left_top'>
-                  Question {item.id}
+                  Question {Number(item.id) + 1}
                 </Grid>
                 <Grid className='exerciseContainer_left_bottom'>
                   <img onClick={(e) => { scaleImg(e) }} src={item.question} alt="" />
@@ -187,23 +195,26 @@ const Exercise = (props) => {
               </Grid>
 
               <Grid className='exerciseContainer_right'>
-
-                <Grid className='exerciseContainer_right_top'>
-                  <Fab onClick={() => { handlePdf(item.mark, index, 'mark') }} style={{ marginRight: "12px", height: "36px", width: "36px" }}><PictureAsPdf style={{ height: "20px", width: "20px" }} /></Fab>
-
-                  <Button onClick={() => { handleMark(item.mark, index) }} variant='outlined' color='secondary' size='large' style={{ width: "150px" }}>
-                    mark
-                  </Button>
-
+                <Grid className='exerciseContainer_right_level'>
+                  <LevelComponent levelProps={item} />
                 </Grid>
                 <Grid className='exerciseContainer_right_bottom'>
-                  <Fab onClick={() => { handlePdf(item.formula, index, 'formula') }} style={{ marginRight: "12px", height: "36px", width: "36px" }}><PictureAsPdf style={{ height: "20px", width: "20px" }} /></Fab>
-
-                  <Button onClick={() => { handleFormula(item.formula, index) }} variant='outlined' color='secondary' size='large' style={{ width: "150px" }}>
-                    formula
-                  </Button>
+                  {/* <Fab onClick={() => { handlePdf(item.formula, index, 'formula') }} style={{ marginRight: "12px", height: "36px", width: "36px" }}><PictureAsPdf style={{ height: "20px", width: "20px" }} /></Fab> */}
+                  <img onClick={() => { handlePdf(item.formula, index, 'formula') }} src="./img/icon/docIcon.png" />
+                  <h5 onClick={() => { handleFormula(item.formula, index) }} style={{ width: "150px" }}>
+                    Formula Booklet
+                  </h5>
 
                 </Grid>
+                <Grid className='exerciseContainer_right_top'>
+                  {/* <Fab onClick={() => { handlePdf(item.mark, index, 'mark') }} style={{ marginRight: "12px", height: "36px", width: "36px" }}><PictureAsPdf style={{ height: "20px", width: "20px" }} /></Fab> */}
+                  <img onClick={() => { handlePdf(item.mark, index, 'mark') }} src="./img/icon/docIcon.png" />
+                  <h5 onClick={() => { handleMark(item.mark, index) }} style={{ width: "150px" }}>
+                    Mark Scheme
+                  </h5>
+
+                </Grid>
+
               </Grid>
 
               <div className={`exerciseContainer_popup ${activ === index ? 'active' : ''}`}>

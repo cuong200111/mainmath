@@ -91,7 +91,7 @@ router.route('/addcontenttopic/:ib/:topic/:nametopic').post((req, res, next) => 
 
     })
     const newData = [...data, { id: req.queryId, question: questionURl, mark: markURl, formula: formulaURl, type: req.body.type }]
- 
+
     const wrFile = path.join(`./data/Contains/${req.ib}/${req.topic}/${req.nametopic}/data.json`)
     wr = fs.writeFileSync(wrFile, JSON.stringify(newData), 'utf8')
     if (wr) {
@@ -115,19 +115,19 @@ router.route('/addcontenttopic/:ib/:topic/:nametopic').post((req, res, next) => 
 router.route('/addTopic').post((req, res, next) => {
   const dataPath = path.join(`./data`)
   const { IB, Topic, title, description } = req.body
-
+  const strTitle = title.trim()
   const jsonExercise = JSON.parse(exercise)
-  jsonExercise[IB][Topic].push({ title, content: description })
-  if (fs.existsSync(`${dataPath}/Contains/${title}`)) {
+  jsonExercise[IB][Topic].push({ title: strTitle, content: description })
+  if (fs.existsSync(`${dataPath}/Contains/${strTitle}`)) {
     res.send('failure')
   } else {
     fs.writeFileSync(linkExercise, JSON.stringify(jsonExercise), 'utf8')
-    fs.mkdirSync(`${dataPath}/Contains/${IB}/${Topic}/${title}`)
-    fs.mkdirSync(`${dataPath}/Contains/${IB}/${Topic}/${title}/img`)
-    // fs.mkdirSync(`${dataPath}/Contains/${IB}/${Topic}/${title}/img/question`)
-    // fs.mkdirSync(`${dataPath}/Contains/${IB}/${Topic}/${title}/img/mark`)
-    // fs.mkdirSync(`${dataPath}/Contains/${IB}/${Topic}/${title}/img/formula`)
-    fs.writeFileSync(`${dataPath}/Contains/${IB}/${Topic}/${title}/data.json`, '[]')
+    fs.mkdirSync(`${dataPath}/Contains/${IB}/${Topic}/${strTitle}`)
+    fs.mkdirSync(`${dataPath}/Contains/${IB}/${Topic}/${strTitle}/img`)
+    // fs.mkdirSync(`${dataPath}/Contains/${IB}/${Topic}/${strTitle}/img/question`)
+    // fs.mkdirSync(`${dataPath}/Contains/${IB}/${Topic}/${strTitle}/img/mark`)
+    // fs.mkdirSync(`${dataPath}/Contains/${IB}/${Topic}/${strTitle}/img/formula`)
+    fs.writeFileSync(`${dataPath}/Contains/${IB}/${Topic}/${strTitle}/data.json`, '[]')
     res.send('sucsees')
   }
 })
