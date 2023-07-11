@@ -4,10 +4,11 @@ import NotFoundPage from "./page/NotFoundPage"
 import Content from "./page/Homepage/container"
 import Topic from "./page/Topic"
 import Exercise from "./page/Exercise"
-import AddTopic from "./page/dasboard/addTopic"
-import AddContentTopic from "./page/dasboard/addContentTopic"
 import DeleteContentTopic from "./page/dasboard/deleteContentTopic"
 
+import SingleTopic from "./page/SingleTopic/SingleTopic"
+
+import SingleExercise from "./page/SingleExercise"
 const router = [
     {
         path: "/",
@@ -15,7 +16,13 @@ const router = [
     }
     , {
         path: "/login",
-        main: () => <Login />
+        main: () => {
+            if (Boolean(localStorage.getItem("online"))) {
+                return window.location.href = '/'
+            } else {
+                return <Login />
+            }
+        }
     }, {
         path: "/content",
         main: () => <Content />
@@ -28,16 +35,8 @@ const router = [
         main: () => <Exercise pathName="exercise" />
     },
     {
-        path: "/addcontenttopic",
-        main: () => <AddContentTopic />
-    },
-    {
         path: "/deletecontenttopic",
         main: () => <DeleteContentTopic />
-    },
-    {
-        path: "/addtopic",
-        main: () => <AddTopic />
     },
     {
         path: "/Topic",
@@ -45,6 +44,15 @@ const router = [
     }, {
         path: '*',
         main: () => <NotFoundPage />,
+    },
+    {
+        path: '/singletopic',
+        main: () => <SingleTopic />
+    },
+
+    {
+        path: '/singleExercise',
+        main: () => <SingleExercise />
     }
 ]
 export default router

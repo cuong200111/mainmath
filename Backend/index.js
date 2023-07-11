@@ -9,14 +9,15 @@ const deleteEnpoint = require('./controllers/delete')
 const imgStatic = path.join('./data/Contains')
 const app = express()
 app.use(cors({
-    origin:"*"
+    origin: "*"
 }))
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended:true}))
-app.use('/imgdata',express.static(imgStatic))
-app.use('/',getEnpoint)
-app.use('/',postEnpoint)
-app.use('/',deleteEnpoint)
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use('/imgdata', express.static(imgStatic))
+app.use('/', getEnpoint)
+app.use('/', postEnpoint)
+app.use('/', deleteEnpoint)
+
 
 
 app.listen(44000)

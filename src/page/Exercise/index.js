@@ -28,7 +28,9 @@ const Exercise = (props) => {
     async function filExercise() {
       try {
         const fillExer = await axios.get(`${apiKeys}/getExercise`)
+        console.log(fillExer);
         const exerciseMap = await axios.get(`${apiKeys}/getExercise/${IB}/${title}/${id}`)
+
         setExprs(exerciseMap.data)
         const filterData = fillExer.data.exercise[IB][title].filter(item => {
           const formatStr = item.title.trim()

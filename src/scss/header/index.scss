@@ -26,6 +26,30 @@ $backgroundHeader: #DBEAFE;
                 font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
                 font-size: 20px;
             }
+
+            &_online {
+                height: 40px;
+                width: 40px;
+
+                position: relative;
+                cursor: pointer;
+                border-radius: 100%;
+                padding:10%;
+                &_avata {
+                    border-radius: 100%;
+                    overflow: hidden;
+                    width: 100%;
+                    height: 100%;
+                    background-size: cover;
+                    background-color: white;
+                    img {
+                        width: 100%;
+                        height: 100%;
+
+                    }
+                }
+
+            }
         }
 
         &_between {
@@ -51,7 +75,7 @@ $backgroundHeader: #DBEAFE;
                         cursor: auto !important;
                         position: absolute;
                         height: 300px;
-                     
+
                         left: -250%;
                         width: 700px !important;
                         top: 190%;
@@ -113,6 +137,8 @@ $backgroundHeader: #DBEAFE;
 
                                 }
                             }
+
+
                         }
                     }
                 }

@@ -46,12 +46,7 @@ const AddTopic = (props) => {
     const dirMapTopic = ['Exam', 'Topic']
     const [IB, setIB] = useState('')
     const [Topic, setTopic] = useState('')
-    useEffect(() => {
-        value.setShow(false)
-        return () => {
-            value.setShow(true)
-        }
-    })
+
 
 
 

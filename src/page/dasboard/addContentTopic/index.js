@@ -1,13 +1,12 @@
 import { AppBar, Box, Button, FormControl, Grid, Icon, InputLabel, MenuItem, Select, SwipeableDrawer, TextField } from '@mui/material'
 import axios from 'axios'
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import React, {  useEffect, useRef, useState } from 'react'
 import { apiKeys } from '../../../config/api'
-import { Mycontext } from '../../Layout/index'
+
 import { MuiFileInput } from 'mui-file-input'
 import BasicSelect from './option'
 import ButtonAppBar from './appbar'
-import styled from 'styled-components'
-import AddIcon from '@mui/icons-material/Add';
+
 import { Send } from '@mui/icons-material'
 import { connect } from 'react-redux'
 import { actionNoti } from '../../../redux/action'
@@ -44,13 +43,8 @@ const AddContentTopic = (props) => {
 
         })
     }, [Snackbar])
-    const value = useContext(Mycontext)
-    useEffect(() => {
-        value.setShow(false)
-        return () => {
-            value.setShow(true)
-        }
-    })
+
+ 
     const [dirMap, setDirmap] = useState([])
 
     //Name 
