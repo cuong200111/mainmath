@@ -42,12 +42,7 @@ const DeleteContentTopic = (props) => {
         })
     }, [Snackbar])
     const value = useContext(Mycontext)
-    useEffect(() => {
-        value.setShow(false)
-        return () => {
-            value.setShow(true)
-        }
-    })
+  
     const [activeDraw, setActiveDraw] = useState(false)
     const [dirMap, setDirmap] = useState([])
 

@@ -65,7 +65,7 @@ const TopicParam = (props) => {
   return (
     <div className='Topics'>
       <Grid container className='Topics_top'>
-        <h1 style={{fontSize:"28px"}}>Topics</h1>
+        <h1 style={{ fontSize: "28px" }}>Topics</h1>
       </Grid>
       <Grid container className='Topics_between'>
         {/* <Box className='Topics_between_box1'>
@@ -82,7 +82,7 @@ const TopicParam = (props) => {
           </Grid>
           <Grid className='Topics_between_box2_bottom'>
             <Grid className='Topics_between_box1_bottom' container style={{ padding: "30px 0px" }}>
-              {topics.map((item, index) => (<Link to={`/Topic/${IB}?title=${item.name}`} className='Topics_between_box1_bottom_content' style={{ margin: "0px 20px 0 0px", backgroundColor:  indexTopic === index ? '#155f75' :  '', color: indexTopic === index ? 'white':'black' }} key={index}>{item.name}</Link>))}
+              {topics.map((item, index) => (<Link to={`/Topic/${IB}?title=${item.name}`} className='Topics_between_box1_bottom_content' style={{ margin: "0px 20px 0 0px", backgroundColor: indexTopic === index ? '#155f75' : '', color: indexTopic === index ? 'white' : 'black' }} key={index}>{item.name}</Link>))}
             </Grid>
           </Grid>
         </Box>
@@ -90,18 +90,22 @@ const TopicParam = (props) => {
       <Grid container justifyContent="space-between" className='Topics_bottom'>
         <Box className='Topics_bottom_Box'>
           <Grid className='Topics_bottom_Box_Content' container  >
-            {expr ? expr.map((item, index) => (
-              <Grid key={index} item xs={2} onClick={() => {
+            {expr ? expr.map((item, index) => {
+
+
+              return (<Grid key={index} item xs={2} onClick={() => {
                 navigate(`/exercise?IB=${IB}&title=${titleParam}&id=${item.title}`)
               }} className='Topics_bottom_Box_Content_items'>
                 <h1>
-                  {item.title.slice(0, 10)}...
+
+                  {item.length > 10 ? `${item.title.slice(0, 10)}...` : `${item.title.slice(0, 10)}`}
                 </h1>
                 <span className='test'>
-                  {item.content.slice(0, 200)}...
+                  {item.content > 200 ? `${item.content.slice(0, 200)}...` : `${item.content.slice(0, 200)}`}
+
                 </span>
-              </Grid>
-            )) : null}
+              </Grid>)
+            }) : null}
 
           </Grid>
         </Box>
@@ -195,10 +199,10 @@ const Topic = () => {
                 navigate('/exercise')
               }} item xs={4} className='Topics_bottom_Box_Content_items'>
                 <h1>
-                  {item.title.slice(0, 10)}...
+                  {item instanceof String && item.title.slice(0, 10)}...
                 </h1>
                 <div>
-                  {item.content.slice(0, 70)}...
+                  {item instanceof String && item.content.slice(0, 70)}...
                 </div>
               </Grid>
             </div>)) : null}

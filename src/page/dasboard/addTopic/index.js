@@ -46,12 +46,7 @@ const AddTopic = (props) => {
     const dirMapTopic = ['Exam', 'Topic']
     const [IB, setIB] = useState('')
     const [Topic, setTopic] = useState('')
-    useEffect(() => {
-        value.setShow(false)
-        return () => {
-            value.setShow(true)
-        }
-    })
+
 
 
 
@@ -72,141 +67,142 @@ const AddTopic = (props) => {
         setTimeoutId(newTimeoutId); // store new timeout ID
 
         // rest of your code
-    
 
-    if (title.length === 0 || description.length === 0 || Topic.length === 0 || IB.length === 0) {
-        noti({
-            msg: 'Vui lòng nhập đủ thông tin các trường',
-            varirant: "warning",
-        })
-    } else {
-        const findDulicate = await axios.get(`${apiKeys}/getExercise`)
-        const data = findDulicate.data.exercise[IB][Topic]
-        const filterData = data.filter((item) => {
-            if (item.title !== title) {
-                return false
-            } else {
-                return item
 
-            }
-        })
-        if (filterData.length) {
+        if (title.length === 0 || description.length === 0 || Topic.length === 0 || IB.length === 0) {
             noti({
-                msg: 'Dữ liệu đã tồn tại',
+                msg: 'Vui lòng nhập đủ thông tin các trường',
                 varirant: "warning",
             })
         } else {
-            const addTopic = await axios.post(`${apiKeys}/addTopic`, { title, description, IB, Topic })
+            const findDulicate = await axios.get(`${apiKeys}/getExercise`)
+            const data = findDulicate.data.exercise[IB][Topic]
+            const filterData = data.filter((item) => {
+                if (item.title !== title.trim()) {
+                    return false
+                } else {
+                    return item
 
-            if (addTopic.status === 200) {
+                }
+            })
+            console.log(filterData)
+            if (filterData.length) {
                 noti({
-                    msg: 'Thêm thành công dữ liệu',
-                    varirant: "success",
+                    msg: 'Dữ liệu đã tồn tại',
+                    varirant: "warning",
                 })
             } else {
-                noti({
-                    msg: 'Lỗi khi thêm tài liệu',
-                    varirant: "error",
-                })
+                const addTopic = await axios.post(`${apiKeys}/addTopic`, { title, description, IB, Topic })
+
+                if (addTopic.status === 200) {
+                    noti({
+                        msg: 'Thêm thành công dữ liệu',
+                        varirant: "success",
+                    })
+                } else {
+                    noti({
+                        msg: 'Lỗi khi thêm tài liệu',
+                        varirant: "error",
+                    })
+                }
             }
+
         }
 
+
     }
+    useEffect(() => {
+        async function listDir() {
 
+            const dirIB = await axios.get(`${apiKeys}/getDirIB`)
 
-}
-useEffect(() => {
-    async function listDir() {
-
-        const dirIB = await axios.get(`${apiKeys}/getDirIB`)
-
-        setDirmap(dirIB.data)
+            setDirmap(dirIB.data)
+        }
+        listDir()
+        return () => {
+            return 0
+        }
+    }, [])
+    const handleChange1 = (e) => {
+        setIB(e.target.value)
     }
-    listDir()
-    return () => {
-        return 0
+    const handleChange2 = (e) => {
+        setTopic(e.target.value)
     }
-}, [])
-const handleChange1 = (e) => {
-    setIB(e.target.value)
-}
-const handleChange2 = (e) => {
-    setTopic(e.target.value)
-}
-return (
-    <div className='addTopic' style={{
-        height: "100vh",
-        width: "100%",
-        display: "flex",
+    return (
+        <div className='addTopic' style={{
+            height: "100vh",
+            width: "100%",
+            display: "flex",
 
-        justifyContent: "center",
-        alignItems: "center",
-
-    }}>
-        <div style={{ width: "100%", position: "fixed", top: "0%" }}>
-            <div style={{ overflow: "hidden", position: "relative", width: "100%", height: "70px" }} >
-                <div style={{ width: "23%", position: "absolute", top: "12%", right: "2%" }} ref={snackRef}>
-                    <Snackbars />
-                </div>
-            </div>
-        </div>
-        <Grid className='addTopic_content' style={{
+            justifyContent: "center",
+            alignItems: "center",
 
         }}>
-            <Grid>
-                <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">Nhập IB</InputLabel>
-                    <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value={IB}
-                        label="Nhập IB"
-                        onChange={handleChange1}
-                    >
+            <div style={{ width: "100%", position: "fixed", top: "0%" }}>
+                <div style={{ overflow: "hidden", position: "relative", width: "100%", height: "70px" }} >
+                    <div style={{ width: "23%", position: "absolute", top: "12%", right: "2%" }} ref={snackRef}>
+                        <Snackbars />
+                    </div>
+                </div>
+            </div>
+            <Grid className='addTopic_content' style={{
 
-                        {dirMap && dirMap.map((item, index) => (
-                            <MenuItem key={index} value={item}>{item}</MenuItem>
-                        ))}
+            }}>
+                <Grid>
+                    <FormControl fullWidth>
+                        <InputLabel id="demo-simple-select-label">Nhập IB</InputLabel>
+                        <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={IB}
+                            label="Nhập IB"
+                            onChange={handleChange1}
+                        >
+
+                            {dirMap && dirMap.map((item, index) => (
+                                <MenuItem key={index} value={item}>{item}</MenuItem>
+                            ))}
 
 
-                    </Select>
-                </FormControl>
+                        </Select>
+                    </FormControl>
+                </Grid>
+                <Grid>
+                    <FormControl fullWidth>
+                        <InputLabel id="demo-simple-select-label">Nhập Topic</InputLabel>
+                        <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={Topic}
+                            label="Nhập Topic"
+                            onChange={handleChange2}
+                        >
+
+                            {dirMapTopic && dirMapTopic.map((item, index) => (
+                                <MenuItem key={index} value={item}>{item}</MenuItem>
+                            ))}
+
+
+                        </Select>
+                    </FormControl>
+                </Grid>
+                <Grid>
+                    <TextField onChange={(e) => {
+                        setTitle(e.target.value)
+                    }} id="outlined-basic" label="Tên Topic" variant="outlined" />
+                </Grid>
+                <Grid>
+                    <TextField onChange={(e) => {
+                        setDescription(e.target.value)
+                    }} id="outlined-basic" label="Tên mô tả" variant="outlined" />
+                </Grid>
+                <Grid>
+                    <Button onClick={handleAddTopic} style={{ width: "100%" }} variant="contained">Thêm</Button>
+                </Grid>
             </Grid>
-            <Grid>
-                <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">Nhập Topic</InputLabel>
-                    <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value={Topic}
-                        label="Nhập Topic"
-                        onChange={handleChange2}
-                    >
-
-                        {dirMapTopic && dirMapTopic.map((item, index) => (
-                            <MenuItem key={index} value={item}>{item}</MenuItem>
-                        ))}
-
-
-                    </Select>
-                </FormControl>
-            </Grid>
-            <Grid>
-                <TextField onChange={(e) => {
-                    setTitle(e.target.value)
-                }} id="outlined-basic" label="Tên Topic" variant="outlined" />
-            </Grid>
-            <Grid>
-                <TextField onChange={(e) => {
-                    setDescription(e.target.value)
-                }} id="outlined-basic" label="Tên mô tả" variant="outlined" />
-            </Grid>
-            <Grid>
-                <Button onClick={handleAddTopic} style={{ width: "100%" }} variant="contained">Thêm</Button>
-            </Grid>
-        </Grid>
-    </div>
-)
+        </div>
+    )
 }
 
 
